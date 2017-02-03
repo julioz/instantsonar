@@ -8,6 +8,11 @@ public class ArtistsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("Hello World: Instant Apps");
+
+        setContentView(R.layout.activity_artists);
+        if (savedInstanceState == null) {
+            getFragmentManager().beginTransaction()
+                                .replace(R.id.fragment_container, ArtistsFragment.newInstance()).commit();
+        }
     }
 }
