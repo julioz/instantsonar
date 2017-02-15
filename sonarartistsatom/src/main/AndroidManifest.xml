@@ -1,6 +1,6 @@
-<manifest package="com.sample.instantsonarartists"
-    split="${atomName}"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:instant="http://schemas.android.com/instantapps">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:instant="http://schemas.android.com/instantapps"
+    package="com.sample.instantsonar"
+    split="${atomName}">
 
 </manifest>
