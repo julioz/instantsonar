@@ -15,7 +15,7 @@ public class ArtistsFragment extends Fragment {
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = new Button(getActivity());
+        View view = inflater.inflate(R.layout.fragment_artists, null);
         return view;
     }
 }
