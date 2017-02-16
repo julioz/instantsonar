@@ -11,7 +11,7 @@ public class ArtistsActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_artists);
         if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.fragment_container, ArtistsFragment.newInstance()).commit();
         }
     }
