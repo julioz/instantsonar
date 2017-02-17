@@ -25,8 +25,8 @@ dependencies {
   compile fileTree(dir: 'libs', include: ['*.jar'])
   compile 'com.android.support:appcompat-v7:25.1.1'
   compile 'com.squareup.okhttp3:okhttp:3.6.0'
-  compile "com.google.dagger:dagger:2.9"
-  annotationProcessor "com.google.dagger:dagger-compiler:2.9"
+  compile "com.google.dagger:dagger:$daggerVersion"
+  annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
   provided 'javax.annotation:jsr250-api:1.0'
   compile "com.soundcloud.lightcycle:lightcycle-lib:$lightCycleVersion"
   annotationProcessor "com.soundcloud.lightcycle:lightcycle-processor:$lightCycleVersion"

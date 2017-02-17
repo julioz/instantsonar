@@ -22,6 +22,6 @@ android {
 
 dependencies {
   compile project(':sonarbase')
-  annotationProcessor "com.google.dagger:dagger-compiler:2.9"
+  annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
   annotationProcessor "com.soundcloud.lightcycle:lightcycle-processor:$lightCycleVersion"
 }

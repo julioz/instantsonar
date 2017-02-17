@@ -40,5 +40,6 @@ ext {
   versionCode = 1
   versionName = "1.0"
   supportLib = "25.1.0"
+  daggerVersion = '2.9'
   lightCycleVersion='1.6.0'
 }
