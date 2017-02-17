@@ -22,4 +22,5 @@ android {
 
 dependencies {
   compile project(':sonarbase')
+  annotationProcessor "com.soundcloud.lightcycle:lightcycle-processor:$lightCycleVersion"
 }
