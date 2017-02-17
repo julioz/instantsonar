@@ -24,8 +24,10 @@ public class ArtistsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ((SampleApplication) getActivity().getApplication())
-                .getComponent()
+        DaggerArtistsComponent
+                .builder()
+                .applicationComponent(((SampleApplication) getActivity().getApplication()).getComponent())
+                .build()
                 .inject(this);
     }
 
