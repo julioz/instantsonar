@@ -1,10 +1,11 @@
 package com.sample.instantsonar.artists;
 
 import com.sample.instantsonar.SampleApplication;
+import com.soundcloud.lightcycle.LightCycle;
+import com.soundcloud.lightcycle.LightCycleSupportFragment;
 import okhttp3.OkHttpClient;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,9 @@ import android.view.ViewGroup;
 
 import javax.inject.Inject;
 
-public class ArtistsFragment extends Fragment {
+public class ArtistsFragment extends LightCycleSupportFragment<ArtistsFragment> {
+
+    @Inject @LightCycle ArtistsPresenter presenter;
 
     @Inject OkHttpClient client;
 
@@ -20,18 +23,15 @@ public class ArtistsFragment extends Fragment {
         return new ArtistsFragment();
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+    public ArtistsFragment() {
         DaggerArtistsComponent
                 .builder()
-                .applicationComponent(((SampleApplication) getActivity().getApplication()).getComponent())
+                .applicationComponent(SampleApplication.getComponent())
                 .build()
                 .inject(this);
     }
 
-    private static final String TAG = "ArtistsFragment";
+    public static final String TAG = "ArtistsFragment";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

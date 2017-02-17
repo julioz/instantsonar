@@ -4,7 +4,7 @@ import android.app.Application;
 
 public class SampleApplication extends Application {
 
-    private ApplicationComponent mComponent;
+    private static ApplicationComponent mComponent;
 
     @Override
     public void onCreate() {
@@ -14,7 +14,7 @@ public class SampleApplication extends Application {
                                                .build();
     }
 
-    public ApplicationComponent getComponent() {
+    public static ApplicationComponent getComponent() {
         return mComponent;
     }
 }

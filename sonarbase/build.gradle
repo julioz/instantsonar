@@ -28,4 +28,6 @@ dependencies {
   compile "com.google.dagger:dagger:2.9"
   annotationProcessor "com.google.dagger:dagger-compiler:2.9"
   provided 'javax.annotation:jsr250-api:1.0'
+  compile "com.soundcloud.lightcycle:lightcycle-lib:$lightCycleVersion"
+  annotationProcessor "com.soundcloud.lightcycle:lightcycle-processor:$lightCycleVersion"
 }
