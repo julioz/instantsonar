@@ -22,4 +22,5 @@ android {
 
 dependencies {
   compile project(':sonarbase')
+  annotationProcessor "com.google.dagger:dagger-compiler:2.9"
 }
