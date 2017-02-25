@@ -1,5 +1,8 @@
 apply plugin: 'com.android.library'
 
+def localProps = new Properties()
+file("../local.properties").withInputStream { localProps.load(it) }
+
 android {
   compileSdkVersion rootProject.compileSdk
   buildToolsVersion rootProject.buildTools
@@ -11,6 +14,9 @@ android {
     versionName rootProject.versionName
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     manifestPlaceholders = [artistsAtomName:"sonarartistsatom"]
+
+    buildConfigField "String", "CLIENT_ID", localProps.soundcloudClientId
+    buildConfigField "long", "USER_ID", localProps.userId
   }
 
   buildTypes {
