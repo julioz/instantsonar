@@ -49,6 +49,10 @@ class ArtistsPresenter extends DefaultSupportFragmentLightCycle<ArtistsFragment>
                   });
     }
 
+    public void onTrackClicked(Track track) {
+        // TODO send user to track details activity
+    }
+
     private void setArtistOnView(Artist artist) {
         if (artist.getCity() == null || artist.getCity().trim().isEmpty()) {
             view.hideCity();

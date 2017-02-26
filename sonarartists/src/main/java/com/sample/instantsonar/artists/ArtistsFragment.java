@@ -20,7 +20,7 @@ import android.widget.TextView;
 import javax.inject.Inject;
 import java.util.List;
 
-public class ArtistsFragment extends LightCycleSupportFragment<ArtistsFragment> implements ArtistsPresenter.ArtistsView {
+public class ArtistsFragment extends LightCycleSupportFragment<ArtistsFragment> implements ArtistsPresenter.ArtistsView, View.OnClickListener {
 
     @Inject @LightCycle ArtistsPresenter presenter;
 
@@ -30,6 +30,7 @@ public class ArtistsFragment extends LightCycleSupportFragment<ArtistsFragment> 
     private ImageView userImage;
     private ProgressBar progressBar;
     private RecyclerView tracksRecyclerView;
+    private TracksAdapter tracksAdapter;
 
     public static ArtistsFragment newInstance() {
         return new ArtistsFragment();
@@ -49,6 +50,19 @@ public class ArtistsFragment extends LightCycleSupportFragment<ArtistsFragment> 
         findViews(view);
         tracksRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        this.tracksAdapter = null;
+        super.onDestroyView();
+    }
+
+    @Override
+    public void onClick(View view) {
+        final int adapterPosition = tracksRecyclerView.getChildAdapterPosition(view);
+        final Track track = tracksAdapter.getItem(adapterPosition);
+        presenter.onTrackClicked(track);
     }
 
     private void findViews(View view) {
@@ -78,7 +92,8 @@ public class ArtistsFragment extends LightCycleSupportFragment<ArtistsFragment> 
 
     @Override
     public void setTracks(List<Track> tracks) {
-        tracksRecyclerView.setAdapter(new TracksAdapter(tracks));
+        this.tracksAdapter = new TracksAdapter(tracks, this);
+        tracksRecyclerView.setAdapter(tracksAdapter);
     }
 
     @Override
