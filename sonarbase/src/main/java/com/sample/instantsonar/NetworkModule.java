@@ -1,5 +1,6 @@
 package com.sample.instantsonar;
 
+import com.google.gson.Gson;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.Cache;
@@ -36,5 +37,11 @@ public class NetworkModule {
         return new OkHttpClient.Builder()
                 .cache(cache)
                 .build();
+    }
+
+    @Provides
+    @Singleton
+    Gson provideGson() {
+        return new Gson();
     }
 }

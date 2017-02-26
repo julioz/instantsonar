@@ -3,16 +3,16 @@ package com.sample.instantsonar.artists;
 import static com.sample.instantsonar.base.BuildConfig.USER_ID;
 
 import com.sample.instantsonar.UserApi;
+import com.sample.instantsonar.model.User;
 import com.soundcloud.lightcycle.DefaultSupportFragmentLightCycle;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 import android.os.Bundle;
 import android.view.View;
 
 import javax.inject.Inject;
-import java.io.IOException;
 
 class ArtistsPresenter extends DefaultSupportFragmentLightCycle<ArtistsFragment> {
 
@@ -37,24 +37,21 @@ class ArtistsPresenter extends DefaultSupportFragmentLightCycle<ArtistsFragment>
         super.onViewCreated(host, view, savedInstanceState);
         fragment.setContent("Hello World");
 
-        userApi.getUser(USER_ID, new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                fragment.setContent("fail");
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                final String body = response.body().string();
-                fragment.getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        fragment.setContent(body);
-                    }
-                });
-            }
-        });
+        userApi.getUser(USER_ID)
+               .subscribeOn(Schedulers.newThread())
+               .observeOn(AndroidSchedulers.mainThread())
+               .subscribe(new Consumer<User>() {
+                   @Override
+                   public void accept(User user) throws Exception {
+                       fragment.setContent(user.toString());
+                   }
+               }, new Consumer<Throwable>() {
+                   @Override
+                   public void accept(Throwable throwable) throws Exception {
+                       fragment.setContent("fail");
+                       throwable.printStackTrace();
+                   }
+               });
     }
 
     @Override
