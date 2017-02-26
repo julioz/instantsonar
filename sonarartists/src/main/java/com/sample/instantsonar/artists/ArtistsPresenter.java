@@ -1,13 +1,9 @@
 package com.sample.instantsonar.artists;
 
-import static com.sample.instantsonar.base.BuildConfig.USER_ID;
-
-import com.sample.instantsonar.UserApi;
 import com.sample.instantsonar.model.User;
 import com.soundcloud.lightcycle.DefaultSupportFragmentLightCycle;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 
 import android.os.Bundle;
 import android.view.View;
@@ -16,47 +12,53 @@ import javax.inject.Inject;
 
 class ArtistsPresenter extends DefaultSupportFragmentLightCycle<ArtistsFragment> {
 
-    private static final String TAG = "ArtistsPresenter";
-
-    private UserApi userApi;
-
-    private ArtistsFragment fragment;
+    private ArtistsView view;
+    private ArtistsOperations operations;
 
     @Inject
-    public ArtistsPresenter(UserApi userApi) {
-        this.userApi = userApi;
+    public ArtistsPresenter(ArtistsOperations operations) {
+        this.operations = operations;
     }
 
     @Override
     public void onCreate(ArtistsFragment fragment, Bundle bundle) {
-        this.fragment = fragment;
+        this.view = fragment;
     }
 
     @Override
-    public void onViewCreated(ArtistsFragment host, View view, Bundle savedInstanceState) {
-        super.onViewCreated(host, view, savedInstanceState);
-        fragment.setContent("Hello World");
+    public void onViewCreated(ArtistsFragment host, View createdView, Bundle savedInstanceState) {
+        super.onViewCreated(host, createdView, savedInstanceState);
+        view.showLoading();
 
-        userApi.getUser(USER_ID)
-               .subscribeOn(Schedulers.newThread())
-               .observeOn(AndroidSchedulers.mainThread())
-               .subscribe(new Consumer<User>() {
-                   @Override
-                   public void accept(User user) throws Exception {
-                       fragment.setContent(user.toString());
-                   }
-               }, new Consumer<Throwable>() {
-                   @Override
-                   public void accept(Throwable throwable) throws Exception {
-                       fragment.setContent("fail");
-                       throwable.printStackTrace();
-                   }
-               });
+        operations.user()
+                  .observeOn(AndroidSchedulers.mainThread())
+                  .subscribe(new Consumer<User>() {
+                      @Override
+                      public void accept(User user) throws Exception {
+                          view.hideLoading();
+                          view.setContent(user.toString());
+                      }
+                  }, new Consumer<Throwable>() {
+                      @Override
+                      public void accept(Throwable throwable) throws Exception {
+                          view.hideLoading();
+                          view.setContent("fail");
+                          throwable.printStackTrace();
+                      }
+                  });
     }
 
     @Override
     public void onDestroy(ArtistsFragment fragment) {
-        this.fragment = null;
+        this.view = null;
         super.onDestroy(fragment);
+    }
+
+    interface ArtistsView {
+        void showLoading();
+
+        void hideLoading();
+
+        void setContent(String content);
     }
 }

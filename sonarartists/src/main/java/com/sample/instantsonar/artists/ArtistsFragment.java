@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import javax.inject.Inject;
 
-public class ArtistsFragment extends LightCycleSupportFragment<ArtistsFragment> {
+public class ArtistsFragment extends LightCycleSupportFragment<ArtistsFragment> implements ArtistsPresenter.ArtistsView {
 
     @Inject @LightCycle ArtistsPresenter presenter;
 
@@ -31,6 +31,16 @@ public class ArtistsFragment extends LightCycleSupportFragment<ArtistsFragment> 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_artists, null);
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
     }
 
     public void setContent(String content) {
