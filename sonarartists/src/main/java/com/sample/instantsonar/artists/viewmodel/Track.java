@@ -1,17 +1,21 @@
-package com.sample.instantsonar.model;
-
-import com.google.gson.annotations.SerializedName;
+package com.sample.instantsonar.artists.viewmodel;
 
 public class Track {
     private long id;
     private long duration;
     private String title;
-    @SerializedName("artwork_url")
     private String artworkUrl;
-    @SerializedName("playback_count")
     private long playbackCount;
-    @SerializedName("favoritings_count")
     private long favoritingsCount;
+
+    public Track(long id, long duration, String title, String artworkUrl, long playbackCount, long favoritingsCount) {
+        this.id = id;
+        this.duration = duration;
+        this.title = title;
+        this.artworkUrl = artworkUrl;
+        this.playbackCount = playbackCount;
+        this.favoritingsCount = favoritingsCount;
+    }
 
     public long getId() {
         return id;
@@ -35,17 +39,5 @@ public class Track {
 
     public long getFavoritingsCount() {
         return favoritingsCount;
-    }
-
-    @Override
-    public String toString() {
-        return "Track{" +
-                "id=" + id +
-                ", duration=" + duration +
-                ", title='" + title + '\'' +
-                ", artworkUrl='" + artworkUrl + '\'' +
-                ", playbackCount=" + playbackCount +
-                ", favoritingsCount=" + favoritingsCount +
-                '}';
     }
 }

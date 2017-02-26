@@ -1,5 +1,6 @@
 package com.sample.instantsonar.artists;
 
+import com.sample.instantsonar.artists.viewmodel.Track;
 import com.soundcloud.lightcycle.DefaultSupportFragmentLightCycle;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import javax.inject.Inject;
+import java.util.List;
 
 class ArtistsPresenter extends DefaultSupportFragmentLightCycle<ArtistsFragment> {
 
@@ -36,6 +38,7 @@ class ArtistsPresenter extends DefaultSupportFragmentLightCycle<ArtistsFragment>
                       public void accept(Artist artist) throws Exception {
                           view.hideLoading();
                           view.setUserInfo(artist.getName(), artist.getImageUrl());
+                          view.setTracks(artist.getTracks());
                       }
                   }, new Consumer<Throwable>() {
                       @Override
@@ -59,5 +62,7 @@ class ArtistsPresenter extends DefaultSupportFragmentLightCycle<ArtistsFragment>
         void hideLoading();
 
         void setUserInfo(String username, String userImageUrl);
+
+        void setTracks(List<Track> tracks);
     }
 }
