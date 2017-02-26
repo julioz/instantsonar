@@ -1,4 +1,4 @@
-package com.sample.instantsonar;
+package com.sample.instantsonar.api;
 
 import com.google.gson.Gson;
 import com.sample.instantsonar.base.BuildConfig;
