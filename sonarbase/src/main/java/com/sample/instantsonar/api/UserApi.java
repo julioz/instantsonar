@@ -12,6 +12,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import android.util.Log;
+
 import javax.inject.Inject;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -19,6 +21,8 @@ import java.util.List;
 import java.util.concurrent.Callable;
 
 public class UserApi {
+
+    private static final String TAG = "UserApi";
 
     private static final String SEPARATOR = "/";
     private static final String HOST = "https://api.soundcloud.com" + SEPARATOR;
@@ -60,6 +64,7 @@ public class UserApi {
     }
 
     private <ReturnType> Observable<ReturnType> request(final String url, final Type typeOfT) {
+        Log.e(TAG, "Performing request to " + url);
         return Observable.defer(new Callable<ObservableSource<Response>>() {
             @Override
             public ObservableSource<Response> call() throws Exception {

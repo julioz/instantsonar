@@ -3,11 +3,14 @@ package com.sample.instantsonar.artists;
 import static com.sample.instantsonar.base.BuildConfig.USER_ID;
 
 import com.sample.instantsonar.api.UserApi;
+import com.sample.instantsonar.model.Track;
 import com.sample.instantsonar.model.User;
 import io.reactivex.Observable;
+import io.reactivex.functions.BiFunction;
 import io.reactivex.schedulers.Schedulers;
 
 import javax.inject.Inject;
+import java.util.List;
 
 public class ArtistsOperations {
 
@@ -18,8 +21,14 @@ public class ArtistsOperations {
         this.userApi = userApi;
     }
 
-    public Observable<User> user() {
+    public Observable<Artist> artist() {
         return userApi.getUser(USER_ID)
+                      .zipWith(userApi.getUserTracks(USER_ID), new BiFunction<User, List<Track>, Artist>() {
+                          @Override
+                          public Artist apply(User user, List<Track> tracks) throws Exception {
+                              return new Artist(user, tracks);
+                          }
+                      })
                       .subscribeOn(Schedulers.newThread());
     }
 }

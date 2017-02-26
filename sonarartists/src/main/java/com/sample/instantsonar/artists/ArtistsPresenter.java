@@ -1,6 +1,5 @@
 package com.sample.instantsonar.artists;
 
-import com.sample.instantsonar.model.User;
 import com.soundcloud.lightcycle.DefaultSupportFragmentLightCycle;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -30,13 +29,13 @@ class ArtistsPresenter extends DefaultSupportFragmentLightCycle<ArtistsFragment>
         super.onViewCreated(host, createdView, savedInstanceState);
         view.showLoading();
 
-        operations.user()
+        operations.artist()
                   .observeOn(AndroidSchedulers.mainThread())
-                  .subscribe(new Consumer<User>() {
+                  .subscribe(new Consumer<Artist>() {
                       @Override
-                      public void accept(User user) throws Exception {
+                      public void accept(Artist artist) throws Exception {
                           view.hideLoading();
-                          view.setContent(user.toString());
+                          view.setContent(artist.toString());
                       }
                   }, new Consumer<Throwable>() {
                       @Override
