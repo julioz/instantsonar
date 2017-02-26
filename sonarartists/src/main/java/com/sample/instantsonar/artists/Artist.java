@@ -14,6 +14,14 @@ public class Artist {
         this.tracks = tracks;
     }
 
+    public String getName() {
+        return user.getFullName();
+    }
+
+    public String getImageUrl() {
+        return user.getAvatarUrl();
+    }
+
     @Override
     public String toString() {
         return "Artist{" +

@@ -35,13 +35,13 @@ class ArtistsPresenter extends DefaultSupportFragmentLightCycle<ArtistsFragment>
                       @Override
                       public void accept(Artist artist) throws Exception {
                           view.hideLoading();
-                          view.setContent(artist.toString());
+                          view.setUserInfo(artist.getName(), artist.getImageUrl());
                       }
                   }, new Consumer<Throwable>() {
                       @Override
                       public void accept(Throwable throwable) throws Exception {
                           view.hideLoading();
-                          view.setContent("fail");
+                          view.setUserInfo("fail", null);
                           throwable.printStackTrace();
                       }
                   });
@@ -58,6 +58,6 @@ class ArtistsPresenter extends DefaultSupportFragmentLightCycle<ArtistsFragment>
 
         void hideLoading();
 
-        void setContent(String content);
+        void setUserInfo(String username, String userImageUrl);
     }
 }

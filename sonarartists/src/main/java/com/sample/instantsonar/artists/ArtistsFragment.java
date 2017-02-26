@@ -1,13 +1,16 @@
 package com.sample.instantsonar.artists;
 
 import com.sample.instantsonar.SampleApplication;
+import com.sample.instantsonar.artists.ui.CircleTransform;
 import com.soundcloud.lightcycle.LightCycle;
 import com.soundcloud.lightcycle.LightCycleSupportFragment;
+import com.squareup.picasso.Picasso;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -18,7 +21,8 @@ public class ArtistsFragment extends LightCycleSupportFragment<ArtistsFragment> 
     @Inject @LightCycle ArtistsPresenter presenter;
 
     private ViewGroup contentGroup;
-    private TextView textView;
+    private TextView userName;
+    private ImageView userImage;
     private ProgressBar progressBar;
 
     public static ArtistsFragment newInstance() {
@@ -47,7 +51,8 @@ public class ArtistsFragment extends LightCycleSupportFragment<ArtistsFragment> 
     private void findViews(View view) {
         contentGroup = (ViewGroup) view.findViewById(R.id.fragment_artists_content);
         progressBar = (ProgressBar) view.findViewById(R.id.fragment_artists_loading);
-        textView = (TextView) view.findViewById(R.id.fragment_artists_textview);
+        userName = (TextView) view.findViewById(R.id.fragment_artists_user_name);
+        userImage = (ImageView) view.findViewById(R.id.fragment_artists_user_image);
     }
 
     @Override
@@ -60,8 +65,9 @@ public class ArtistsFragment extends LightCycleSupportFragment<ArtistsFragment> 
         progressBar.setVisibility(View.GONE);
     }
 
-    public void setContent(String content) {
+    public void setUserInfo(String username, String userImageUrl) {
         contentGroup.setVisibility(View.VISIBLE);
-        textView.setText(content);
+        userName.setText(username);
+        Picasso.with(getActivity()).load(userImageUrl).transform(new CircleTransform()).into(userImage);
     }
 }
