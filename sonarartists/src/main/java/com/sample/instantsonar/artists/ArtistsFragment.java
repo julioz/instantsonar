@@ -26,6 +26,7 @@ public class ArtistsFragment extends LightCycleSupportFragment<ArtistsFragment> 
 
     private ViewGroup contentGroup;
     private TextView userName;
+    private TextView userCity;
     private ImageView userImage;
     private ProgressBar progressBar;
     private RecyclerView tracksRecyclerView;
@@ -54,6 +55,7 @@ public class ArtistsFragment extends LightCycleSupportFragment<ArtistsFragment> 
         contentGroup = (ViewGroup) view.findViewById(R.id.fragment_artists_content);
         progressBar = (ProgressBar) view.findViewById(R.id.fragment_artists_loading);
         userName = (TextView) view.findViewById(R.id.fragment_artists_user_name);
+        userCity = (TextView) view.findViewById(R.id.fragment_artists_user_city);
         userImage = (ImageView) view.findViewById(R.id.fragment_artists_user_image);
         tracksRecyclerView = (RecyclerView) view.findViewById(R.id.fragment_artists_tracklist);
     }
@@ -77,5 +79,16 @@ public class ArtistsFragment extends LightCycleSupportFragment<ArtistsFragment> 
     @Override
     public void setTracks(List<Track> tracks) {
         tracksRecyclerView.setAdapter(new TracksAdapter(tracks));
+    }
+
+    @Override
+    public void hideCity() {
+        userCity.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showCity(String city) {
+        userCity.setText(city);
+        userCity.setVisibility(View.VISIBLE);
     }
 }

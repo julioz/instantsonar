@@ -34,6 +34,8 @@ public class TracksAdapter extends RecyclerView.Adapter<TracksAdapter.TrackViewH
 
         Picasso.with(holder.artworkView.getContext()).load(track.getArtworkUrl()).into(holder.artworkView);
         holder.title.setText(track.getTitle());
+        holder.playCount.setText(String.valueOf(track.getPlaybackCount()));
+        holder.favCount.setText(String.valueOf(track.getFavoritingsCount()));
     }
 
     @Override
@@ -41,15 +43,18 @@ public class TracksAdapter extends RecyclerView.Adapter<TracksAdapter.TrackViewH
         return tracks.size();
     }
 
-    public static class TrackViewHolder extends RecyclerView.ViewHolder {
-
+    static class TrackViewHolder extends RecyclerView.ViewHolder {
         ImageView artworkView;
         TextView title;
+        TextView playCount;
+        TextView favCount;
 
-        public TrackViewHolder(View view) {
+        TrackViewHolder(View view) {
             super(view);
             artworkView = (ImageView) view.findViewById(R.id.row_track_artwork);
             title = (TextView) view.findViewById(R.id.row_track_title);
+            playCount = (TextView) view.findViewById(R.id.row_track_play_count);
+            favCount = (TextView) view.findViewById(R.id.row_track_favorite_count);
         }
     }
 }

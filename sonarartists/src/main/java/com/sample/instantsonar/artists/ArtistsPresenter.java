@@ -37,8 +37,7 @@ class ArtistsPresenter extends DefaultSupportFragmentLightCycle<ArtistsFragment>
                       @Override
                       public void accept(Artist artist) throws Exception {
                           view.hideLoading();
-                          view.setUserInfo(artist.getName(), artist.getImageUrl());
-                          view.setTracks(artist.getTracks());
+                          setArtistOnView(artist);
                       }
                   }, new Consumer<Throwable>() {
                       @Override
@@ -48,6 +47,17 @@ class ArtistsPresenter extends DefaultSupportFragmentLightCycle<ArtistsFragment>
                           throwable.printStackTrace();
                       }
                   });
+    }
+
+    private void setArtistOnView(Artist artist) {
+        if (artist.getCity() == null || artist.getCity().trim().isEmpty()) {
+            view.hideCity();
+        } else {
+            view.showCity(artist.getCity());
+        }
+
+        view.setUserInfo(artist.getName(), artist.getImageUrl());
+        view.setTracks(artist.getTracks());
     }
 
     @Override
@@ -64,5 +74,9 @@ class ArtistsPresenter extends DefaultSupportFragmentLightCycle<ArtistsFragment>
         void setUserInfo(String username, String userImageUrl);
 
         void setTracks(List<Track> tracks);
+
+        void hideCity();
+
+        void showCity(String city);
     }
 }

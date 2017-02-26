@@ -8,6 +8,7 @@ public class User {
     private String avatarUrl;
     @SerializedName("full_name")
     private String fullName;
+    private String city;
 
     public String getUsername() {
         return username;
@@ -21,12 +22,17 @@ public class User {
         return fullName;
     }
 
+    public String getCity() {
+        return city;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "username='" + username + '\'' +
                 ", avatarUrl='" + avatarUrl + '\'' +
                 ", fullName='" + fullName + '\'' +
+                ", city='" + city + '\'' +
                 '}';
     }
 }

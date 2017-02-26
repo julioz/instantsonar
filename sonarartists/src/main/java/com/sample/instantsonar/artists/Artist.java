@@ -22,6 +22,10 @@ public class Artist {
         return user.getAvatarUrl();
     }
 
+    public String getCity() {
+        return user.getCity();
+    }
+
     public List<Track> getTracks() {
         return tracks;
     }
