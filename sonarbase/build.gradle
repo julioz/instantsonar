@@ -13,7 +13,7 @@ android {
     versionCode rootProject.versionCode
     versionName rootProject.versionName
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    manifestPlaceholders = [artistsAtomName:"sonarartistsatom"]
+    manifestPlaceholders = [artistsAtomName:"sonarartistsatom", tracksAtomName:"sonartracksatom"]
 
     buildConfigField "String", "CLIENT_ID", localProps.soundcloudClientId
     buildConfigField "long", "USER_ID", localProps.userId
