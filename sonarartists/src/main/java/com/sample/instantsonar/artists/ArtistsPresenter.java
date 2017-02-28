@@ -1,10 +1,12 @@
 package com.sample.instantsonar.artists;
 
+import com.sample.instantsonar.Navigator;
 import com.sample.instantsonar.artists.viewmodel.Track;
 import com.soundcloud.lightcycle.DefaultSupportFragmentLightCycle;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 
@@ -13,6 +15,7 @@ import java.util.List;
 
 class ArtistsPresenter extends DefaultSupportFragmentLightCycle<ArtistsFragment> {
 
+    private Context context;
     private ArtistsView view;
     private ArtistsOperations operations;
 
@@ -23,6 +26,7 @@ class ArtistsPresenter extends DefaultSupportFragmentLightCycle<ArtistsFragment>
 
     @Override
     public void onCreate(ArtistsFragment fragment, Bundle bundle) {
+        this.context = fragment.getActivity();
         this.view = fragment;
     }
 
@@ -50,7 +54,7 @@ class ArtistsPresenter extends DefaultSupportFragmentLightCycle<ArtistsFragment>
     }
 
     public void onTrackClicked(Track track) {
-        // TODO send user to track details activity
+        Navigator.track(context, track.getId());
     }
 
     private void setArtistOnView(Artist artist) {
@@ -67,6 +71,7 @@ class ArtistsPresenter extends DefaultSupportFragmentLightCycle<ArtistsFragment>
     @Override
     public void onDestroy(ArtistsFragment fragment) {
         this.view = null;
+        this.context = null;
         super.onDestroy(fragment);
     }
 
