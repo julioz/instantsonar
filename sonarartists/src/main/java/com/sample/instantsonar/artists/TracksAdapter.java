@@ -1,6 +1,6 @@
 package com.sample.instantsonar.artists;
 
-import com.sample.instantsonar.artists.viewmodel.Track;
+import com.sample.instantsonar.model.Track;
 import com.squareup.picasso.Picasso;
 
 import android.support.v7.widget.RecyclerView;

@@ -1,7 +1,7 @@
 package com.sample.instantsonar.artists;
 
 import com.sample.instantsonar.Navigator;
-import com.sample.instantsonar.artists.viewmodel.Track;
+import com.sample.instantsonar.model.Track;
 import com.soundcloud.lightcycle.DefaultSupportFragmentLightCycle;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;

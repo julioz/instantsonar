@@ -1,7 +1,7 @@
 package com.sample.instantsonar.artists;
 
-import com.sample.instantsonar.artists.viewmodel.Track;
-import com.sample.instantsonar.model.User; // needs to be entity mapped
+import com.sample.instantsonar.model.Track;
+import com.sample.instantsonar.model.User;
 
 import java.util.List;
 

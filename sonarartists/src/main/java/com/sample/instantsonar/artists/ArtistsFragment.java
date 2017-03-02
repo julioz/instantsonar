@@ -2,7 +2,7 @@ package com.sample.instantsonar.artists;
 
 import com.sample.instantsonar.SampleApplication;
 import com.sample.instantsonar.artists.ui.CircleTransform;
-import com.sample.instantsonar.artists.viewmodel.Track;
+import com.sample.instantsonar.model.Track;
 import com.soundcloud.lightcycle.LightCycle;
 import com.soundcloud.lightcycle.LightCycleSupportFragment;
 import com.squareup.picasso.Picasso;
