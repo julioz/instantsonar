@@ -5,16 +5,25 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 public class TrackActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_track);
 
+        if (savedInstanceState == null) {
+            final long trackId = getTrackId();
+
+            getSupportFragmentManager().beginTransaction()
+                                       .replace(R.id.fragment_container, TrackFragment.newInstance(trackId)).commit();
+        }
+    }
+
+    private long getTrackId() {
         Intent intent = getIntent();
         Uri data = intent.getData();
-        Toast.makeText(this, "track " + data.getLastPathSegment(), Toast.LENGTH_SHORT).show();
+        return Long.valueOf(data.getLastPathSegment());
     }
 }
