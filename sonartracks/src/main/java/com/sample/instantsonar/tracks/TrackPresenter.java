@@ -14,6 +14,7 @@ class TrackPresenter extends DefaultSupportFragmentLightCycle<TrackFragment> {
 
     private long trackId;
     private TrackOperations operations;
+    private TrackView view;
 
     @Inject
     public TrackPresenter(TrackOperations operations) {
@@ -21,15 +22,16 @@ class TrackPresenter extends DefaultSupportFragmentLightCycle<TrackFragment> {
     }
 
     @Override
-    public void onCreate(TrackFragment host, Bundle bundle) {
-        super.onCreate(host, bundle);
+    public void onCreate(TrackFragment fragment, Bundle bundle) {
+        super.onCreate(fragment, bundle);
 
-        this.trackId = host.getTrackId();
+        this.trackId = fragment.getTrackId();
+        this.view = fragment;
     }
 
     @Override
-    public void onViewCreated(TrackFragment host, View view, Bundle savedInstanceState) {
-        super.onViewCreated(host, view, savedInstanceState);
+    public void onViewCreated(TrackFragment fragment, View view, Bundle savedInstanceState) {
+        super.onViewCreated(fragment, view, savedInstanceState);
 
         operations.track(trackId)
                   .observeOn(AndroidSchedulers.mainThread())
@@ -44,5 +46,15 @@ class TrackPresenter extends DefaultSupportFragmentLightCycle<TrackFragment> {
                           // TODO
                       }
                   });
+    }
+
+    @Override
+    public void onDestroy(TrackFragment fragment) {
+        this.view = null;
+        super.onDestroy(fragment);
+    }
+
+    interface TrackView {
+
     }
 }

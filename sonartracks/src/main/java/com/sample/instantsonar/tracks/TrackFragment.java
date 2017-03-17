@@ -6,16 +6,13 @@ import com.soundcloud.lightcycle.LightCycleSupportFragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
 
 import javax.inject.Inject;
 
-public class TrackFragment extends LightCycleSupportFragment<TrackFragment> {
+public class TrackFragment extends LightCycleSupportFragment<TrackFragment> implements TrackPresenter.TrackView {
 
     private static final String EXTRA_TRACK_ID = "track_id";
 
