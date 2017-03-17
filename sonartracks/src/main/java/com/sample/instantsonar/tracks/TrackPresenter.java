@@ -30,20 +30,25 @@ class TrackPresenter extends DefaultSupportFragmentLightCycle<TrackFragment> {
     }
 
     @Override
-    public void onViewCreated(TrackFragment fragment, View view, Bundle savedInstanceState) {
-        super.onViewCreated(fragment, view, savedInstanceState);
+    public void onViewCreated(TrackFragment fragment, View createdView, Bundle savedInstanceState) {
+        super.onViewCreated(fragment, createdView, savedInstanceState);
 
         operations.track(trackId)
                   .observeOn(AndroidSchedulers.mainThread())
                   .subscribe(new Consumer<Track>() {
                       @Override
                       public void accept(Track track) throws Exception {
-                          // TODO
+                          view.setTitle(track.getTitle());
+                          view.setDescription(track.getDescription());
+                          view.setArtwork(track.getArtworkUrl());
+                          view.setCounts(track.getPlaybackCount(), track.getFavoritingsCount());
+                          view.setGenre(track.getGenre());
+                          view.setAuthor(track.getUser().getUsername(), track.getUser().getAvatarUrl());
                       }
                   }, new Consumer<Throwable>() {
                       @Override
                       public void accept(Throwable throwable) throws Exception {
-                          // TODO
+                          view.showError();
                       }
                   });
     }
@@ -56,5 +61,18 @@ class TrackPresenter extends DefaultSupportFragmentLightCycle<TrackFragment> {
 
     interface TrackView {
 
+        void setTitle(String title);
+
+        void setDescription(String description);
+
+        void setArtwork(String artworkUrl);
+
+        void setCounts(long playbackCount, long favoritingsCount);
+
+        void setGenre(String genre);
+
+        void setAuthor(String username, String avatarUrl);
+
+        void showError();
     }
 }

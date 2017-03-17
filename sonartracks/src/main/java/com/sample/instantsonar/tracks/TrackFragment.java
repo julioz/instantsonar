@@ -42,11 +42,46 @@ public class TrackFragment extends LightCycleSupportFragment<TrackFragment> impl
         return view;
     }
 
+    public long getTrackId() {
+        return getArguments().getLong(EXTRA_TRACK_ID);
+    }
+
     private void findViews(View view) {
 
     }
 
-    public long getTrackId() {
-        return getArguments().getLong(EXTRA_TRACK_ID);
+    @Override
+    public void setTitle(String title) {
+
+    }
+
+    @Override
+    public void setDescription(String description) {
+
+    }
+
+    @Override
+    public void setArtwork(String artworkUrl) {
+        
+    }
+
+    @Override
+    public void setCounts(long playbackCount, long favoritingsCount) {
+
+    }
+
+    @Override
+    public void setGenre(String genre) {
+
+    }
+
+    @Override
+    public void setAuthor(String username, String avatarUrl) {
+
+    }
+
+    @Override
+    public void showError() {
+
     }
 }
