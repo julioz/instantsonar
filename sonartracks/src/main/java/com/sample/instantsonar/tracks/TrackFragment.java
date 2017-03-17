@@ -3,12 +3,15 @@ package com.sample.instantsonar.tracks;
 import com.sample.instantsonar.SampleApplication;
 import com.soundcloud.lightcycle.LightCycle;
 import com.soundcloud.lightcycle.LightCycleSupportFragment;
+import com.squareup.picasso.Picasso;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import javax.inject.Inject;
 
@@ -17,6 +20,10 @@ public class TrackFragment extends LightCycleSupportFragment<TrackFragment> impl
     private static final String EXTRA_TRACK_ID = "track_id";
 
     @Inject @LightCycle TrackPresenter presenter;
+
+    private ImageView artworkImage;
+    private TextView trackTitle;
+    private TextView trackAuthorName;
 
     public static TrackFragment newInstance(long trackId) {
         Bundle b = new Bundle();
@@ -47,12 +54,15 @@ public class TrackFragment extends LightCycleSupportFragment<TrackFragment> impl
     }
 
     private void findViews(View view) {
+        artworkImage = (ImageView) view.findViewById(R.id.fragment_track_artwork);
+        trackTitle = (TextView) view.findViewById(R.id.fragment_track_title);
+        trackAuthorName = (TextView) view.findViewById(R.id.fragment_track_author_name);
 
     }
 
     @Override
     public void setTitle(String title) {
-
+        trackTitle.setText(title);
     }
 
     @Override
@@ -62,7 +72,7 @@ public class TrackFragment extends LightCycleSupportFragment<TrackFragment> impl
 
     @Override
     public void setArtwork(String artworkUrl) {
-        
+        Picasso.with(getActivity()).load(artworkUrl).into(artworkImage);
     }
 
     @Override
@@ -77,7 +87,7 @@ public class TrackFragment extends LightCycleSupportFragment<TrackFragment> impl
 
     @Override
     public void setAuthor(String username, String avatarUrl) {
-
+        trackAuthorName.setText(username);
     }
 
     @Override
