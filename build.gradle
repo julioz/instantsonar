@@ -42,4 +42,5 @@ ext {
   supportLib = "25.1.0"
   daggerVersion = '2.9'
   lightCycleVersion='1.6.0'
+  picassoVersion='2.5.2'
 }
