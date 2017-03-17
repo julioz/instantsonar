@@ -1,19 +1,23 @@
 package com.sample.instantsonar.tracks;
 
+import com.sample.instantsonar.model.Track;
 import com.soundcloud.lightcycle.DefaultSupportFragmentLightCycle;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import javax.inject.Inject;
 
 class TrackPresenter extends DefaultSupportFragmentLightCycle<TrackFragment> {
 
     private long trackId;
+    private TrackOperations operations;
 
     @Inject
-    public TrackPresenter() {
+    public TrackPresenter(TrackOperations operations) {
+        this.operations = operations;
     }
 
     @Override
@@ -27,6 +31,18 @@ class TrackPresenter extends DefaultSupportFragmentLightCycle<TrackFragment> {
     public void onViewCreated(TrackFragment host, View view, Bundle savedInstanceState) {
         super.onViewCreated(host, view, savedInstanceState);
 
-        Toast.makeText(host.getActivity(), "Track " + trackId, Toast.LENGTH_SHORT).show();
+        operations.track(trackId)
+                  .observeOn(AndroidSchedulers.mainThread())
+                  .subscribe(new Consumer<Track>() {
+                      @Override
+                      public void accept(Track track) throws Exception {
+                          // TODO
+                      }
+                  }, new Consumer<Throwable>() {
+                      @Override
+                      public void accept(Throwable throwable) throws Exception {
+                          // TODO
+                      }
+                  });
     }
 }
