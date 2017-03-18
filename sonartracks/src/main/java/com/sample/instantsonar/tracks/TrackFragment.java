@@ -23,7 +23,10 @@ public class TrackFragment extends LightCycleSupportFragment<TrackFragment> impl
 
     private ImageView artworkImage;
     private TextView trackTitle;
+    private TextView trackDescription;
     private TextView trackAuthorName;
+    private TextView trackGenre;
+    private TextView favoriteCount;
 
     public static TrackFragment newInstance(long trackId) {
         Bundle b = new Bundle();
@@ -56,8 +59,10 @@ public class TrackFragment extends LightCycleSupportFragment<TrackFragment> impl
     private void findViews(View view) {
         artworkImage = (ImageView) view.findViewById(R.id.fragment_track_artwork);
         trackTitle = (TextView) view.findViewById(R.id.fragment_track_title);
+        trackDescription = (TextView) view.findViewById(R.id.fragment_track_description);
         trackAuthorName = (TextView) view.findViewById(R.id.fragment_track_author_name);
-
+        trackGenre = (TextView) view.findViewById(R.id.fragment_track_genre);
+        favoriteCount = (TextView) view.findViewById(R.id.fragment_track_favorite_count);
     }
 
     @Override
@@ -67,7 +72,7 @@ public class TrackFragment extends LightCycleSupportFragment<TrackFragment> impl
 
     @Override
     public void setDescription(String description) {
-
+        trackDescription.setText(description);
     }
 
     @Override
@@ -77,12 +82,12 @@ public class TrackFragment extends LightCycleSupportFragment<TrackFragment> impl
 
     @Override
     public void setCounts(long playbackCount, long favoritingsCount) {
-
+        favoriteCount.setText(String.valueOf(favoritingsCount));
     }
 
     @Override
     public void setGenre(String genre) {
-
+        trackGenre.setText(genre);
     }
 
     @Override
