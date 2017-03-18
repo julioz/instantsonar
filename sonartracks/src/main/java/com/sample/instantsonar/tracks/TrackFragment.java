@@ -1,6 +1,7 @@
 package com.sample.instantsonar.tracks;
 
 import com.sample.instantsonar.SampleApplication;
+import com.sample.instantsonar.tracks.ui.WaveformView;
 import com.soundcloud.lightcycle.LightCycle;
 import com.soundcloud.lightcycle.LightCycleSupportFragment;
 import com.squareup.picasso.Picasso;
@@ -27,6 +28,7 @@ public class TrackFragment extends LightCycleSupportFragment<TrackFragment> impl
     private TextView trackAuthorName;
     private TextView trackGenre;
     private TextView favoriteCount;
+    private WaveformView waveform;
 
     public static TrackFragment newInstance(long trackId) {
         Bundle b = new Bundle();
@@ -58,6 +60,7 @@ public class TrackFragment extends LightCycleSupportFragment<TrackFragment> impl
 
     private void findViews(View view) {
         artworkImage = (ImageView) view.findViewById(R.id.fragment_track_artwork);
+        waveform = (WaveformView) view.findViewById(R.id.fragment_track_waveform);
         trackTitle = (TextView) view.findViewById(R.id.fragment_track_title);
         trackDescription = (TextView) view.findViewById(R.id.fragment_track_description);
         trackAuthorName = (TextView) view.findViewById(R.id.fragment_track_author_name);
@@ -93,6 +96,11 @@ public class TrackFragment extends LightCycleSupportFragment<TrackFragment> impl
     @Override
     public void setAuthor(String username, String avatarUrl) {
         trackAuthorName.setText(username);
+    }
+
+    @Override
+    public void setWaveform(String waveformUrl) {
+        Picasso.with(getActivity()).load(waveformUrl).into(waveform);
     }
 
     @Override

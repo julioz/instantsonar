@@ -81,7 +81,15 @@
         </LinearLayout>
     </LinearLayout>
 
+    <com.sample.instantsonar.tracks.ui.WaveformView
+        android:id="@+id/fragment_track_waveform"
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:layout_above="@+id/fragment_track_description_container"
+        android:layout_marginBottom="24dp" />
+
     <ScrollView
+        android:id="@id/fragment_track_description_container"
         android:layout_width="match_parent"
         android:layout_height="128dp"
         android:layout_alignParentBottom="true"

@@ -43,6 +43,7 @@ class TrackPresenter extends DefaultSupportFragmentLightCycle<TrackFragment> {
                           view.setArtwork(track.getArtworkUrl());
                           view.setCounts(track.getPlaybackCount(), track.getFavoritingsCount());
                           view.setGenre(track.getGenre());
+                          view.setWaveform(track.getWaveformUrl());
                           view.setAuthor(track.getUser().getUsername(), track.getUser().getAvatarUrl());
                       }
                   }, new Consumer<Throwable>() {
@@ -72,6 +73,8 @@ class TrackPresenter extends DefaultSupportFragmentLightCycle<TrackFragment> {
         void setGenre(String genre);
 
         void setAuthor(String username, String avatarUrl);
+
+        void setWaveform(String waveformUrl);
 
         void showError();
     }
