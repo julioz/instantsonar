@@ -29,6 +29,8 @@ allprojects {
   }
 }
 
+task test(dependsOn: [':sonarartists:testDebugUnitTest'])
+
 task clean(type: Delete) {
   delete rootProject.buildDir
 }
