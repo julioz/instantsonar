@@ -1,3 +1,4 @@
 <resources>
-
+    <string name="error_track_title">Oops!</string>
+    <string name="error_track_message">Could not fetch track information</string>
 </resources>

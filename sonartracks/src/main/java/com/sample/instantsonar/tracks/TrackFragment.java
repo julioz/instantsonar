@@ -24,8 +24,10 @@ public class TrackFragment extends LightCycleSupportFragment<TrackFragment> impl
 
     private ImageView artworkImage;
     private TextView trackTitle;
+    private ViewGroup trackDescriptionContainer;
     private TextView trackDescription;
     private TextView trackAuthorName;
+    private ViewGroup trackInfoContainer;
     private TextView trackGenre;
     private TextView favoriteCount;
     private WaveformView waveform;
@@ -62,8 +64,10 @@ public class TrackFragment extends LightCycleSupportFragment<TrackFragment> impl
         artworkImage = (ImageView) view.findViewById(R.id.fragment_track_artwork);
         waveform = (WaveformView) view.findViewById(R.id.fragment_track_waveform);
         trackTitle = (TextView) view.findViewById(R.id.fragment_track_title);
+        trackDescriptionContainer = (ViewGroup) view.findViewById(R.id.fragment_track_description_container);
         trackDescription = (TextView) view.findViewById(R.id.fragment_track_description);
         trackAuthorName = (TextView) view.findViewById(R.id.fragment_track_author_name);
+        trackInfoContainer = (ViewGroup) view.findViewById(R.id.fragment_track_info_container);
         trackGenre = (TextView) view.findViewById(R.id.fragment_track_genre);
         favoriteCount = (TextView) view.findViewById(R.id.fragment_track_favorite_count);
     }
@@ -105,6 +109,9 @@ public class TrackFragment extends LightCycleSupportFragment<TrackFragment> impl
 
     @Override
     public void showError() {
-
+        trackDescriptionContainer.setVisibility(View.GONE);
+        trackInfoContainer.setVisibility(View.GONE);
+        trackTitle.setText(R.string.error_track_message);
+        trackAuthorName.setText(R.string.error_track_title);
     }
 }
