@@ -2,6 +2,8 @@ package com.sample.instantsonar;
 
 import dagger.Module;
 import dagger.Provides;
+import io.reactivex.Scheduler;
+import io.reactivex.schedulers.Schedulers;
 
 import android.app.Application;
 
@@ -20,5 +22,10 @@ public class AppModule {
     @Singleton
     Application providesApplication() {
         return application;
+    }
+
+    @Provides
+    Scheduler providesScheduler() {
+        return Schedulers.newThread();
     }
 }
