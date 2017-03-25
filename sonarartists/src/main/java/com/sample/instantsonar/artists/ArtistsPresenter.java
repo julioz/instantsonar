@@ -4,6 +4,7 @@ import com.sample.instantsonar.Navigator;
 import com.sample.instantsonar.model.Track;
 import com.soundcloud.lightcycle.DefaultSupportFragmentLightCycle;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
 import android.content.Context;
@@ -33,20 +34,35 @@ class ArtistsPresenter extends DefaultSupportFragmentLightCycle<ArtistsFragment>
     @Override
     public void onViewCreated(ArtistsFragment host, View createdView, Bundle savedInstanceState) {
         super.onViewCreated(host, createdView, savedInstanceState);
-        view.showLoading();
 
         operations.artist()
                   .observeOn(AndroidSchedulers.mainThread())
-                  .subscribe(new Consumer<Artist>() {
+                  .doOnSubscribe(new Consumer<Disposable>() {
+                      @Override
+                      public void accept(Disposable disposable) throws Exception {
+                          view.showLoading();
+                      }
+                  })
+                  .doOnNext(new Consumer<Artist>() {
                       @Override
                       public void accept(Artist artist) throws Exception {
                           view.hideLoading();
+                      }
+                  })
+                  .doOnError(new Consumer<Throwable>() {
+                      @Override
+                      public void accept(Throwable throwable) throws Exception {
+                          view.hideLoading();
+                      }
+                  })
+                  .subscribe(new Consumer<Artist>() {
+                      @Override
+                      public void accept(Artist artist) throws Exception {
                           setArtistOnView(artist);
                       }
                   }, new Consumer<Throwable>() {
                       @Override
                       public void accept(Throwable throwable) throws Exception {
-                          view.hideLoading();
                           view.setUserInfo("fail", null);
                           throwable.printStackTrace();
                       }
