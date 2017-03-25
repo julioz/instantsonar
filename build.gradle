@@ -29,6 +29,7 @@ allprojects {
   }
 }
 
+task create(dependsOn: [':sonaria:assembleDebug'])
 task test(dependsOn: [':sonarartists:testDebugUnitTest'])
 
 task clean(type: Delete) {
