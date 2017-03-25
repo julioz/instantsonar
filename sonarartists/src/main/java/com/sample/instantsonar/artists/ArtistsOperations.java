@@ -6,8 +6,8 @@ import com.sample.instantsonar.api.UserApi;
 import com.sample.instantsonar.model.Track;
 import com.sample.instantsonar.model.User;
 import io.reactivex.Observable;
-import io.reactivex.Scheduler;
 import io.reactivex.functions.BiFunction;
+import io.reactivex.schedulers.Schedulers;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -15,12 +15,10 @@ import java.util.List;
 public class ArtistsOperations {
 
     private UserApi userApi;
-    private Scheduler scheduler;
 
     @Inject
-    public ArtistsOperations(UserApi userApi, Scheduler scheduler) {
+    public ArtistsOperations(UserApi userApi) {
         this.userApi = userApi;
-        this.scheduler = scheduler;
     }
 
     public Observable<Artist> artist() {
@@ -31,6 +29,6 @@ public class ArtistsOperations {
                               return new Artist(user, tracks);
                           }
                       })
-                      .subscribeOn(scheduler);
+                      .subscribeOn(Schedulers.newThread());
     }
 }

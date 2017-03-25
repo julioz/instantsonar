@@ -3,23 +3,21 @@ package com.sample.instantsonar.tracks;
 import com.sample.instantsonar.api.TrackApi;
 import com.sample.instantsonar.model.Track;
 import io.reactivex.Observable;
-import io.reactivex.Scheduler;
+import io.reactivex.schedulers.Schedulers;
 
 import javax.inject.Inject;
 
 public class TrackOperations {
 
     private TrackApi trackApi;
-    private Scheduler scheduler;
 
     @Inject
-    public TrackOperations(TrackApi trackApi, Scheduler scheduler) {
+    public TrackOperations(TrackApi trackApi) {
         this.trackApi = trackApi;
-        this.scheduler = scheduler;
     }
 
     public Observable<Track> track(long trackId) {
         return trackApi.getTrack(trackId)
-                       .subscribeOn(scheduler);
+                       .subscribeOn(Schedulers.newThread());
     }
 }
