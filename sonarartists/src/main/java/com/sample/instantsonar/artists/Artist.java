@@ -31,6 +31,25 @@ public class Artist {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Artist artist = (Artist) o;
+
+        if (user != null ? !user.equals(artist.user) : artist.user != null) return false;
+        return tracks != null ? tracks.equals(artist.tracks) : artist.tracks == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = user != null ? user.hashCode() : 0;
+        result = 31 * result + (tracks != null ? tracks.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Artist{" +
                 "user=" + user +
