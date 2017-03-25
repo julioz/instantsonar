@@ -27,4 +27,5 @@ dependencies {
   compile "com.squareup.picasso:picasso:$picassoVersion"
 
   testCompile "junit:junit:$junitVersion"
+  testCompile "org.mockito:mockito-core:$mockitoVersion"
 }

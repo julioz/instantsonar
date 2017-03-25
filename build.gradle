@@ -46,4 +46,5 @@ ext {
   lightCycleVersion='1.6.0'
   picassoVersion='2.5.2'
   junitVersion='4.12'
+  mockitoVersion='2.7.17'
 }
