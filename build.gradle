@@ -30,7 +30,7 @@ allprojects {
 }
 
 task create(dependsOn: [':sonaria:assembleDebug'])
-task test(dependsOn: [':sonarartists:testDebugUnitTest'])
+task test(dependsOn: [':sonarartists:testDebugUnitTest', ':sonartracks:testDebugUnitTest'])
 
 task clean(type: Delete) {
   delete rootProject.buildDir

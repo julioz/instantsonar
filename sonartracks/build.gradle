@@ -25,4 +25,7 @@ dependencies {
   annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
   annotationProcessor "com.soundcloud.lightcycle:lightcycle-processor:$lightCycleVersion"
   compile "com.squareup.picasso:picasso:$picassoVersion"
+
+  testCompile "junit:junit:$junitVersion"
+  testCompile "org.mockito:mockito-core:$mockitoVersion"
 }
