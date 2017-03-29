@@ -13,8 +13,6 @@ public class TrackApi extends Api {
     private static final String SEPARATOR = "/";
     private static final String HOST = "https://api.soundcloud.com" + SEPARATOR;
     private static final String TRACKS_RESOURCE = "tracks";
-    private static final String CLIENT_ID = BuildConfig.CLIENT_ID;
-    private static final String CLIENT_ID_QUERY_STRING = "?client_id=" + CLIENT_ID;
 
     @Inject
     public TrackApi(OkHttpClient okHttpClient, Gson gson) {
@@ -26,7 +24,7 @@ public class TrackApi extends Api {
     }
 
     private String trackUrl(final long trackId) {
-        return baseUrl(trackId) + CLIENT_ID_QUERY_STRING;
+        return baseUrl(trackId) + clientIdQueryString();
     }
 
     public Observable<Track> getTrack(final long trackId) {

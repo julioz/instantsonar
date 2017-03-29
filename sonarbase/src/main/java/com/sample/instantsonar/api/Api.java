@@ -1,6 +1,7 @@
 package com.sample.instantsonar.api;
 
 import com.google.gson.Gson;
+import com.sample.instantsonar.base.BuildConfig;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.functions.Function;
@@ -17,6 +18,8 @@ import java.util.concurrent.Callable;
 abstract class Api {
 
     private static final String TAG = "Api";
+    private static final String CLIENT_ID = BuildConfig.CLIENT_ID;
+    private static final String CLIENT_ID_QUERY_STRING_KEY = "?client_id=";
 
     private OkHttpClient okHttpClient;
     private Gson gson;
@@ -24,6 +27,10 @@ abstract class Api {
     Api(OkHttpClient okHttpClient, Gson gson) {
         this.okHttpClient = okHttpClient;
         this.gson = gson;
+    }
+
+    final String clientIdQueryString() {
+        return CLIENT_ID_QUERY_STRING_KEY + CLIENT_ID;
     }
 
     <ReturnType> Observable<ReturnType> request(final String url, final Type typeOfT) {
