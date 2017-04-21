@@ -25,7 +25,6 @@ dependencies {
   annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
   annotationProcessor "com.soundcloud.lightcycle:lightcycle-processor:$lightCycleVersion"
   compile "com.squareup.picasso:picasso:$picassoVersion"
-  compile 'com.google.android.exoplayer:exoplayer:r2.3.1'
 
   testCompile "junit:junit:$junitVersion"
   testCompile "org.mockito:mockito-core:$mockitoVersion"
