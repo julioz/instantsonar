@@ -29,7 +29,7 @@ abstract class Api {
         this.gson = gson;
     }
 
-    final String clientIdQueryString() {
+    public final String clientIdQueryString() {
         return CLIENT_ID_QUERY_STRING_KEY + CLIENT_ID;
     }
 

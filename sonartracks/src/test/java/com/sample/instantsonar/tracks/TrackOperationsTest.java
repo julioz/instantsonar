@@ -1,5 +1,7 @@
 package com.sample.instantsonar.tracks;
 
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import com.sample.instantsonar.api.TrackApi;
@@ -36,4 +38,12 @@ public class TrackOperationsTest {
         testObserver.assertValue(TRACK);
     }
 
+    @Test
+    public void streamUrlIsComposedWithClientIdQueryString() {
+        final Track track = mock(Track.class);
+
+        String actual = operations.getStreamUrl(track);
+
+        assertTrue(actual.contains(trackApi.clientIdQueryString()));
+    }
 }

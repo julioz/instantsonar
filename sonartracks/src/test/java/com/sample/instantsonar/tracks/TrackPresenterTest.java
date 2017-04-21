@@ -1,5 +1,6 @@
 package com.sample.instantsonar.tracks;
 
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -18,6 +19,8 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import android.content.Context;
+
 import java.util.concurrent.Callable;
 
 public class TrackPresenterTest {
@@ -27,8 +30,10 @@ public class TrackPresenterTest {
     @Mock Track track;
     @Mock User user;
     @Mock TrackOperations operations;
+    @Mock Player player;
     @Mock TrackFragment fragment;
     @Mock TrackPresenter.TrackView view;
+    @Mock Context context;
     private TrackPresenter presenter;
 
     private String trackTitle = "title";
@@ -58,7 +63,8 @@ public class TrackPresenterTest {
 
         populateMockTrackProperties();
         when(fragment.getTrackId()).thenReturn(TRACK_ID);
-        presenter = new TrackPresenter(operations);
+        when(fragment.getContext()).thenReturn(context);
+        presenter = new TrackPresenter(operations, player);
         presenter.onCreate(fragment, null);
     }
 
@@ -89,6 +95,17 @@ public class TrackPresenterTest {
         verify(view).setGenre(trackGenre);
         verify(view).setWaveform(trackWaveformUrl);
         verify(view).setAuthor(username, userAvatarUrl);
+    }
+
+    @Test
+    public void playerLoadsTrackStreamUrlWhenDataIsFetched() {
+        final String streamUrl = "streamUrl.com";
+        when(operations.track(TRACK_ID)).thenReturn(Observable.just(track));
+        when(operations.getStreamUrl(track)).thenReturn(streamUrl);
+
+        presenter.onViewCreated(fragment, null, null);
+
+        verify(player).load(eq(context), eq(streamUrl));
     }
 
     @Test

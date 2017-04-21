@@ -20,4 +20,8 @@ public class TrackOperations {
         return trackApi.getTrack(trackId)
                        .subscribeOn(Schedulers.newThread());
     }
+
+    public String getStreamUrl(Track track) {
+        return track.getStreamUrl() + trackApi.clientIdQueryString();
+    }
 }

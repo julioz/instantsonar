@@ -14,11 +14,13 @@ class TrackPresenter extends DefaultSupportFragmentLightCycle<TrackFragment> {
 
     private long trackId;
     private TrackOperations operations;
+    private Player player;
     private TrackView view;
 
     @Inject
-    public TrackPresenter(TrackOperations operations) {
+    public TrackPresenter(TrackOperations operations, Player player) {
         this.operations = operations;
+        this.player = player;
     }
 
     @Override
@@ -30,7 +32,7 @@ class TrackPresenter extends DefaultSupportFragmentLightCycle<TrackFragment> {
     }
 
     @Override
-    public void onViewCreated(TrackFragment fragment, View createdView, Bundle savedInstanceState) {
+    public void onViewCreated(final TrackFragment fragment, View createdView, Bundle savedInstanceState) {
         super.onViewCreated(fragment, createdView, savedInstanceState);
 
         operations.track(trackId)
@@ -38,6 +40,9 @@ class TrackPresenter extends DefaultSupportFragmentLightCycle<TrackFragment> {
                   .subscribe(new Consumer<Track>() {
                       @Override
                       public void accept(Track track) throws Exception {
+                          player.load(fragment.getContext(), operations.getStreamUrl(track));
+                          player.play();
+
                           view.setTitle(track.getTitle());
                           view.setDescription(track.getDescription());
                           view.setArtwork(track.getArtworkUrl());
@@ -57,6 +62,7 @@ class TrackPresenter extends DefaultSupportFragmentLightCycle<TrackFragment> {
     @Override
     public void onDestroy(TrackFragment fragment) {
         this.view = null;
+        this.player.destroy();
         super.onDestroy(fragment);
     }
 
