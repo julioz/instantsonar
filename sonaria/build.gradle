@@ -21,6 +21,6 @@ android {
 }
 
 dependencies {
-  compile project(':sonarartistsatom')
-  compile project(':sonartracksatom')
+  implementation project(':sonarartists')
+  implementation project(':sonartracks')
 }
