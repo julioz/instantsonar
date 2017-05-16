@@ -1,4 +1,4 @@
-apply plugin: 'com.android.library'
+apply plugin: 'com.android.feature'
 
 def localProps = new Properties()
 file("../local.properties").withInputStream { localProps.load(it) }
@@ -6,6 +6,8 @@ file("../local.properties").withInputStream { localProps.load(it) }
 android {
   compileSdkVersion rootProject.compileSdk
   buildToolsVersion rootProject.buildTools
+
+  baseFeature = true
 
   defaultConfig {
     minSdkVersion rootProject.minSdk
