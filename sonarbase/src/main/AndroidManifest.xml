@@ -9,7 +9,6 @@
         android:name="com.sample.instantsonar.SampleApplication">
         <activity
             android:name="com.sample.instantsonar.artists.ArtistsActivity"
-            split="${artistsAtomName}"
             android:theme="@style/AppTheme">
             <intent-filter xmlns:instant="http://schemas.android.com/instantapps"
                 android:order="1">
@@ -31,7 +30,6 @@
 
         <activity
             android:name="com.sample.instantsonar.tracks.TrackActivity"
-            split="${tracksAtomName}"
             android:theme="@style/AppTheme">
             <intent-filter xmlns:instant="http://schemas.android.com/instantapps"
                 android:order="1">
