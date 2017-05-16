@@ -49,4 +49,7 @@ dependencies {
 
   testCompile "junit:junit:$junitVersion"
   testCompile "org.mockito:mockito-core:$mockitoVersion"
+
+  feature project(':sonarartists')
+  feature project(':sonartracks')
 }

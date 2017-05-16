@@ -21,7 +21,7 @@ android {
 }
 
 dependencies {
-  implementation project(':sonarbase')
+  api project(':sonarbase')
   annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
   annotationProcessor "com.soundcloud.lightcycle:lightcycle-processor:$lightCycleVersion"
   compile "com.squareup.picasso:picasso:$picassoVersion"
