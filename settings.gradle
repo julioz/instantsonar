@@ -1,1 +1,1 @@
-include ':sonarbase', ':sonarbaseatom', ':sonarartistsatom', ':sonarartists', ':sonartracksatom', ':sonartracks', ':sonaria'
+include ':sonarbase', ':sonarartists', ':sonartracks', ':sonaria'
