@@ -1,26 +1,7 @@
 apply plugin: 'com.android.instantapp'
 
-android {
-  compileSdkVersion rootProject.compileSdk
-  buildToolsVersion rootProject.buildTools
-
-  defaultConfig {
-    minSdkVersion rootProject.minSdk
-    targetSdkVersion rootProject.compileSdk
-    versionCode rootProject.versionCode
-    versionName rootProject.versionName
-    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-  }
-
-  buildTypes {
-    release {
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-    }
-  }
-}
-
 dependencies {
+  implementation project(':sonarbase')
   implementation project(':sonarartists')
   implementation project(':sonartracks')
 }
