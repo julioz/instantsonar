@@ -12,14 +12,14 @@ soundcloudClientId=<SOUNDCLOUD_CLIENT_ID_STRING>
 userId=<ARTIST_IDENTIFIER_ON_SOUNDCLOUD_BASE>
 ```
 
-After defining the project's properties, running either the `gradlew create` task or the fully named `gradlew :sonaria:assembleDebug` will assemble the Instant App `zip` to be installed on devices.
+After defining the project's properties, running either the `gradlew create` task or the fully named `gradlew :sonaria:assembleDebug` will assemble the Instant App `zip` to be installed on devices. You can also install it using Android Studio 3.0 and above support by importing the project.
 
 ### Project structure
 
 This project is composed by a number of Android modules, which are all bundled in the final `zip` file that represents the Instant App:
- - **sonarartists** & **sonarartistsatom**: Artist library and atom. Will respond to the URL `https://instantsonar.com/artist` which will launch a list of the tracks for the artist defined by the `userId` property on the `.properties` file.
- - **sonartracks** & **sonartracksatom**: Track library and atom. Will respond to the URLs like `https://instantsonar.com/track/<track_id>` and will launch an `Activity` that presents the details of the track defined by the `track_id` query param.
- - **sonarbase** & **sonarbaseatom**: Base library and atom. Contains shared functionality across the other atoms, shared Android resources, as well as the main `AndroidManifest` file that determines the paths and the Instant App configuration.
+ - **sonarartists**: Artist feature. Will respond to the URL `https://instantsonar.com/artist` which will launch a list of the tracks for the artist defined by the `userId` property on the `.properties` file.
+ - **sonartracks**: Track feature. Will respond to the URLs like `https://instantsonar.com/track/<track_id>` and will launch an `Activity` that presents the details of the track defined by the `track_id` query param.
+ - **sonarbase**: Base feature. Contains shared functionality across the other features, shared Android resources, as well as the main `AndroidManifest` file that determines the permissions and the Instant App configuration.
  - **sonaria**: Builder module for the Instant App `zip` generation.
 
 ### Testing
