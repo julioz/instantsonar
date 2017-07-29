@@ -1,7 +1,7 @@
 # Instant Sonar
 ### Sample app for the Instant Apps SDK
 
-This is a sample project to showcase the basic functionality of the Instant Apps SDK on Android. Check out more information about it on [my blogpost](https://medium.com/@juliozynger).
+This is a sample project to showcase the basic functionality of the Instant Apps SDK on Android. Check out more information about it on [my blogpost](https://medium.com/@juliozynger/extending-the-web-with-android-instant-apps-bba10d910f0d).
 
 ### How to build
 
